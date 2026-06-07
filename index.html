@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Naseen E A — AI & Data Science</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0f0f0f;
+    --ink-2: #3a3a3a;
+    --ink-3: #7a7a7a;
+    --paper: #f8f6f1;
+    --paper-2: #eeece6;
+    --paper-3: #e2dfd7;
+    --accent: #1a4a8a;
+    --accent-light: #e8eef8;
+    --accent-mid: #5a82c0;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'DM Sans', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+    --max: 1100px;
+    --gap: clamp(1.5rem, 4vw, 3rem);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.7;
+    font-size: 16px;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 1.1rem 2rem;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(248,246,241,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--paper-3);
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--ink-2);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 7rem 2rem 4rem;
+    align-items: center;
+    gap: 3rem;
+  }
+  .hero-text {}
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 24px; height: 1px;
+    background: var(--accent);
+  }
+  h1.hero-name {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+    color: var(--ink);
+  }
+  h1.hero-name em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-bio {
+    font-size: 1.05rem;
+    color: var(--ink-2);
+    line-height: 1.75;
+    max-width: 420px;
+    margin-bottom: 2.5rem;
+  }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.75rem 1.6rem;
+    font-family: var(--sans);
+    font-size: 0.88rem;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+  }
+  .btn-primary:hover { background: #133a70; }
+  .btn-outline {
+    background: transparent;
+    color: var(--ink);
+    border: 1.5px solid var(--paper-3);
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  .hero-visual {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .hero-card {
+    background: #fff;
+    border: 1px solid var(--paper-3);
+    border-radius: 4px;
+    padding: 1.25rem 1.5rem;
+    animation: fadeUp 0.6s both;
+  }
+  .hero-card:nth-child(1) { animation-delay: 0.2s; }
+  .hero-card:nth-child(2) { animation-delay: 0.35s; }
+  .hero-card:nth-child(3) { animation-delay: 0.5s; }
+  .hero-card-label {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--ink-3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+  .hero-card-value {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .hero-card-value span {
+    color: var(--accent);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* SECTIONS */
+  section { padding: clamp(4rem, 8vw, 7rem) 2rem; }
+  .container { max-width: var(--max); margin: 0 auto; }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .section-label::before {
+    content: '';
+    display: inline-block;
+    width: 20px; height: 1px;
+    background: var(--accent);
+  }
+  h2.section-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 3rem;
+    color: var(--ink);
+  }
+
+  /* ABOUT */
+  #about { background: var(--paper); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .about-text p {
+    color: var(--ink-2);
+    font-size: 1.05rem;
+    margin-bottom: 1.2rem;
+    line-height: 1.8;
+  }
+  .about-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .stat-card {
+    background: #fff;
+    border: 1px solid var(--paper-3);
+    border-radius: 4px;
+    padding: 1.2rem 1.4rem;
+  }
+  .stat-number {
+    font-family: var(--serif);
+    font-size: 2rem;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .stat-desc {
+    font-size: 0.85rem;
+    color: var(--ink-3);
+  }
+
+  /* SKILLS */
+  #skills { background: var(--paper-2); }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+  .skill-group {
+    background: #fff;
+    border: 1px solid var(--paper-3);
+    border-radius: 4px;
+    padding: 1.5rem;
+  }
+  .skill-group-title {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .tag {
+    display: inline-block;
+    padding: 0.3rem 0.75rem;
+    background: var(--accent-light);
+    color: var(--accent);
+    font-size: 0.82rem;
+    font-weight: 500;
+    border-radius: 2px;
+  }
+  .tag.neutral {
+    background: var(--paper-2);
+    color: var(--ink-2);
+  }
+
+  /* PROJECTS */
+  #projects { background: var(--paper); }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  .project-card {
+    background: #fff;
+    border: 1px solid var(--paper-3);
+    border-radius: 4px;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .project-card:hover {
+    border-color: var(--accent-mid);
+    transform: translateY(-2px);
+  }
+  .project-num {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--ink-3);
+    letter-spacing: 0.08em;
+  }
+  .project-title {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    line-height: 1.2;
+    color: var(--ink);
+  }
+  .project-desc {
+    font-size: 0.9rem;
+    color: var(--ink-2);
+    line-height: 1.7;
+    flex: 1;
+  }
+  .project-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .project-stack .tag {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.6rem;
+  }
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--accent);
+    text-decoration: none;
+    margin-top: auto;
+  }
+  .project-link::after { content: '→'; }
+  .project-link:hover { text-decoration: underline; }
+
+  /* EXPERIENCE */
+  #experience { background: var(--paper-2); }
+  .exp-list { display: flex; flex-direction: column; gap: 1.5rem; }
+  .exp-item {
+    background: #fff;
+    border: 1px solid var(--paper-3);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 4px 4px 0;
+    padding: 1.5rem 1.75rem;
+  }
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .exp-role {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    color: var(--ink);
+  }
+  .exp-period {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+  .exp-org {
+    font-size: 0.88rem;
+    color: var(--ink-3);
+    margin-bottom: 0.75rem;
+  }
+  .exp-points {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .exp-points li {
+    font-size: 0.9rem;
+    color: var(--ink-2);
+    padding-left: 1rem;
+    position: relative;
+  }
+  .exp-points li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--accent-mid);
+  }
+
+  /* TOMATRIX TASKS MINI GRID inside exp card */
+  .tomatrix-mini-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+  .tomatrix-mini-card {
+    background: var(--paper);
+    border: 1px solid var(--paper-3);
+    border-radius: 4px;
+    padding: 0.9rem 1rem;
+  }
+  .tomatrix-day {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+  .tomatrix-task {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 0.25rem;
+  }
+  .tomatrix-desc {
+    font-size: 0.78rem;
+    color: var(--ink-3);
+    line-height: 1.5;
+  }
+
+  /* CERTIFICATIONS */
+  #certifications { background: var(--paper); }
+  .cert-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+  }
+  .cert-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.1rem 1.25rem;
+    background: #fff;
+    border: 1px solid var(--paper-3);
+    border-radius: 4px;
+  }
+  .cert-icon {
+    width: 36px; height: 36px;
+    background: var(--accent-light);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 1rem;
+    color: var(--accent);
+  }
+  .cert-name {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 0.2rem;
+  }
+  .cert-org {
+    font-size: 0.78rem;
+    color: var(--ink-3);
+  }
+
+  /* CONTACT */
+  #contact { background: var(--paper-2); }
+  .contact-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .contact-info { display: flex; flex-direction: column; gap: 1.25rem; }
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: #fff;
+    border: 1px solid var(--paper-3);
+    border-radius: 4px;
+    text-decoration: none;
+    color: var(--ink);
+    transition: border-color 0.2s;
+  }
+  .contact-item:hover { border-color: var(--accent); }
+  .contact-item-label {
+    font-size: 0.75rem;
+    color: var(--ink-3);
+    margin-bottom: 0.15rem;
+  }
+  .contact-item-value {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .contact-icon {
+    width: 38px; height: 38px;
+    background: var(--accent-light);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    color: var(--accent);
+    font-size: 1rem;
+  }
+  .contact-note {
+    font-size: 1rem;
+    color: var(--ink-2);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.82rem;
+    font-family: var(--mono);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; padding-top: 6rem; }
+    .hero-visual { display: none; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .contact-layout { grid-template-columns: 1fr; gap: 2rem; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Naseen E A</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-text">
+    <div class="hero-eyebrow">AI & Data Science Undergraduate</div>
+    <h1 class="hero-name">Naseen <em>E A</em></h1>
+    <p class="hero-bio">
+      Third-year B.Tech student at MITS, building intelligent systems at the intersection of machine learning, data science, and automation. Currently interning at Tomatrix Technologies.
+    </p>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="#contact" class="btn btn-outline">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-card">
+      <div class="hero-card-label">Current Status</div>
+      <div class="hero-card-value">B.Tech AI&DS — <span>CGPA 8.3</span></div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-label">Focus Areas</div>
+      <div class="hero-card-value"><span>ML · NLP · Data Science</span> · Web Dev</div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-label">Latest</div>
+      <div class="hero-card-value">Tomatrix <span>Summer Internship 2025</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-label">About</div>
+    <h2 class="section-title">Who I am</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          I'm a third-year B.Tech student specialising in Artificial Intelligence and Data Science at Muthoot Institute of Technology and Science, Varikoli — with a Minor Degree in Mathematics.
+        </p>
+        <p>
+          My work spans machine learning, NLP, computer vision, and workflow automation. I enjoy turning complex problems into working systems — whether that's a sentiment-driven forecasting model, a drowsiness detection system, or an n8n automation pipeline.
+        </p>
+        <p>
+          Beyond code, I lead as Content & Documentation Co-lead at the ACM Student Chapter MITS, and am part of the IEDC Women in Innovation committee. I've represented my institution at national hackathons including Smart India Hackathon and Hackathrone at VIT Chennai.
+        </p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-card">
+          <div class="stat-number">8.3</div>
+          <div class="stat-desc">CGPA out of 10</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">4+</div>
+          <div class="stat-desc">Projects built</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">7</div>
+          <div class="stat-desc">Certifications earned</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">2</div>
+          <div class="stat-desc">Industry internships</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-label">Skills</div>
+    <h2 class="section-title">What I work with</h2>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-title">Languages</div>
+        <div class="skill-tags">
+          <span class="tag">Python</span>
+          <span class="tag">R</span>
+          <span class="tag">Java</span>
+          <span class="tag">C</span>
+          <span class="tag">SQL</span>
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">AI / ML</div>
+        <div class="skill-tags">
+          <span class="tag">Machine Learning</span>
+          <span class="tag">NLP</span>
+          <span class="tag">Computer Vision</span>
+          <span class="tag">Generative AI</span>
+          <span class="tag">Data Science</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Tools & Platforms</div>
+        <div class="skill-tags">
+          <span class="tag">n8n</span>
+          <span class="tag">MATLAB</span>
+          <span class="tag neutral">IBM SkillsBuild</span>
+          <span class="tag neutral">Google Cloud</span>
+          <span class="tag neutral">GitHub</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Soft Skills</div>
+        <div class="skill-tags">
+          <span class="tag neutral">Communication</span>
+          <span class="tag neutral">Teamwork</span>
+          <span class="tag neutral">Problem-Solving</span>
+          <span class="tag neutral">Adaptability</span>
+          <span class="tag neutral">Time Management</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-label">Projects</div>
+    <h2 class="section-title">What I've built</h2>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-num">01</div>
+        <div class="project-title">Foresight — Sentiment Driven Forecasting</div>
+        <p class="project-desc">
+          A machine learning model that analyses social media sentiment using NLP techniques and predicts emerging trends and public behaviour patterns. Leverages real-time data processing and sentiment scoring for decision-making insights.
+        </p>
+        <div class="project-stack">
+          <span class="tag">Python</span>
+          <span class="tag">NLP</span>
+          <span class="tag">ML</span>
+          <span class="tag neutral">Social Media APIs</span>
+        </div>
+        <a href="https://github.com/naseen123" class="project-link">View on GitHub</a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-num">02</div>
+        <div class="project-title">Driver Drowsiness Detection System</div>
+        <p class="project-desc">
+          A real-time computer vision system that detects driver fatigue through facial landmark detection and eye-blink monitoring. Implements automated alert mechanisms to improve road safety.
+        </p>
+        <div class="project-stack">
+          <span class="tag">Python</span>
+          <span class="tag">Computer Vision</span>
+          <span class="tag">OpenCV</span>
+          <span class="tag neutral">dlib</span>
+        </div>
+        <a href="https://github.com/naseen123" class="project-link">View on GitHub</a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-num">03</div>
+        <div class="project-title">Automated Weather Wardrobe Email</div>
+        <p class="project-desc">
+          An n8n workflow automation that fetches real-time weather via OpenWeather API, classifies temperature, generates dynamic clothing recommendations, and sends personalised emails via Gmail OAuth.
+        </p>
+        <div class="project-stack">
+          <span class="tag">n8n</span>
+          <span class="tag neutral">OpenWeather API</span>
+          <span class="tag neutral">Gmail OAuth</span>
+          <span class="tag neutral">Automation</span>
+        </div>
+        <a href="https://github.com/naseen123" class="project-link">View on GitHub</a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-num">04</div>
+        <div class="project-title">MedScan — AI Medical Assistant</div>
+        <p class="project-desc">
+          A hackathon project — an AI-based medical assistance tool that analyses user-input symptoms to provide preliminary health insights and recommendations. Qualified for first evaluation round at Hackathrone, VIT Chennai.
+        </p>
+        <div class="project-stack">
+          <span class="tag">Python</span>
+          <span class="tag">AI</span>
+          <span class="tag neutral">Hackathon</span>
+          <span class="tag neutral">VIT Chennai</span>
+        </div>
+        <a href="https://github.com/naseen123" class="project-link">View on GitHub</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-label">Experience</div>
+    <h2 class="section-title">Where I've worked</h2>
+    <div class="exp-list">
+      <div class="exp-item">
+        <div class="exp-header">
+          <div class="exp-role">AI & Machine Learning Intern</div>
+          <div class="exp-period">Dec 2025 – Jan 2026</div>
+        </div>
+        <div class="exp-org">Edunet Foundation — IBM SkillsBuild & ASAP Kerala</div>
+        <ul class="exp-points">
+          <li>Completed a 4-week intensive internship focused on Artificial Intelligence and Machine Learning.</li>
+          <li>Learned ML fundamentals, AI concepts, and industry use cases through IBM SkillsBuild curriculum.</li>
+        </ul>
+      </div>
+      <div class="exp-item">
+        <div class="exp-header">
+          <div class="exp-role">Summer Intern</div>
+          <div class="exp-period">Current · 2026</div>
+        </div>
+        <div class="exp-org">Tomatrix Technologies, Thiruvananthapuram</div>
+        <ul class="exp-points">
+          <li>Working on a 12-day structured internship covering AI, product development, UI/UX, and automation.</li>
+          <li>Producing branded deliverables for Eduflick AI — brochures, posters, and marketing documents.</li>
+          <li>Built and deployed a personal portfolio website using AI-assisted development tools.</li>
+        </ul>
+
+      </div>
+      <div class="exp-item">
+        <div class="exp-header">
+          <div class="exp-role">Web Development Intern</div>
+          <div class="exp-period">June 2025 – July 2025</div>
+        </div>
+        <div class="exp-org">NDZ Techmindz, Infopark, Kochi</div>
+        <ul class="exp-points">
+          <li>Assisted in developing front-end interfaces using HTML, CSS, JavaScript, and modern frameworks.</li>
+          <li>Supported backend integration and API handling across live projects.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="container">
+    <div class="section-label">Certifications</div>
+    <h2 class="section-title">Courses & credentials</h2>
+    <div class="cert-grid">
+      <div class="cert-item">
+        <div class="cert-icon">✦</div>
+        <div>
+          <div class="cert-name">AI Fundamentals</div>
+          <div class="cert-org">IBM SkillsBuild</div>
+        </div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-icon">✦</div>
+        <div>
+          <div class="cert-name">Python for Data Science</div>
+          <div class="cert-org">NPTEL (Elite)</div>
+        </div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-icon">✦</div>
+        <div>
+          <div class="cert-name">Introduction to Machine Learning</div>
+          <div class="cert-org">NPTEL</div>
+        </div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-icon">✦</div>
+        <div>
+          <div class="cert-name">Introduction to Generative AI</div>
+          <div class="cert-org">Google Cloud</div>
+        </div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-icon">✦</div>
+        <div>
+          <div class="cert-name">MERN Stack Development</div>
+          <div class="cert-org">Zero Pixels Technologies</div>
+        </div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-icon">✦</div>
+        <div>
+          <div class="cert-name">MATLAB — Statistics, OOPs, Optimization</div>
+          <div class="cert-org">MathWorks</div>
+        </div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-icon">✦</div>
+        <div>
+          <div class="cert-name">Linguaskill English Proficiency</div>
+          <div class="cert-org">Cambridge English</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-label">Contact</div>
+    <h2 class="section-title">Let's connect</h2>
+    <div class="contact-layout">
+      <div>
+        <p class="contact-note">
+          I'm open to project collaborations, internship opportunities, and conversations about AI, data science, or anything interesting. Feel free to reach out.
+        </p>
+        <a href="mailto:naseen2507@gmail.com" class="btn btn-primary">Send an Email</a>
+      </div>
+      <div class="contact-info">
+        <a href="mailto:naseen2507@gmail.com" class="contact-item">
+          <div class="contact-icon">✉</div>
+          <div>
+            <div class="contact-item-label">Email</div>
+            <div class="contact-item-value">naseen2507@gmail.com</div>
+          </div>
+        </a>
+        <a href="https://www.linkedin.com/in/naseenea" target="_blank" class="contact-item">
+          <div class="contact-icon">in</div>
+          <div>
+            <div class="contact-item-label">LinkedIn</div>
+            <div class="contact-item-value">linkedin.com/in/naseenea</div>
+          </div>
+        </a>
+        <a href="https://github.com/naseen123" target="_blank" class="contact-item">
+          <div class="contact-icon">gh</div>
+          <div>
+            <div class="contact-item-label">GitHub</div>
+            <div class="contact-item-value">github.com/naseen123</div>
+          </div>
+        </a>
+        <div class="contact-item">
+          <div class="contact-icon">☎</div>
+          <div>
+            <div class="contact-item-label">Phone</div>
+            <div class="contact-item-value">+91 8547324388</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Naseen E A
+</footer>
+
+</body>
+</html>
